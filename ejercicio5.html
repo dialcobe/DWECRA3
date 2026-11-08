@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Ejercicio5</title>
+    </head>
+    <body>
+        <script>
+
+            //5. Crea una web que escriba por pantalla la siguiente información del usuario:
+            /*  tipoDispositivo: "movil" si anchoPantalla < 768, "tablet"
+                si anchoPantalla >= 768 && anchoPantalla < 1024, o 
+                "escritorio" si es mayor o igual a 1024*/
+            var anchoPantalla = screen.width;
+            var tipoDispositivo="";
+
+            if(anchoPantalla<768){
+                tipoDispositivo = "movil"; 
+            }else if(anchoPantalla>= 768 && anchoPantalla < 1024){
+                tipoDispositivo = "tablet"; 
+            }else{
+                tipoDispositivo = "escritorio"; 
+            }
+
+            document.write(" - Tipo de dispositivo: " + tipoDispositivo);
+            document.write("<br>");
+
+            /*resolucionPantalla: Cadena formateada "${anchoPantalla}x${altoPantalla}" 
+            (ej: "1920x1080").*/
+
+            var altoPantalla = screen.height;
+            var resolucionPantalla = `${anchoPantalla} x ${altoPantalla}`;
+            document.write(`-Resolucion de Pantalla ${resolucionPantalla}`);
+            document.write("<br>");
+            
+            /*orientacionPantalla: "horizontal" si anchoPantalla >= altoPantalla,
+             o "vertical" si el alto supera al ancho.*/
+
+             var posicion ="";
+             if(anchoPantalla>=altoPantalla){
+                posicion="horizontal";
+             }else{
+                posicion="vertical";
+             }
+
+             document.write(`-Orientación Pantalla: ${posicion} `);
+             document.write("<br>");
+
+             /*idiomaPrincipal: Los 2 primeros caracteres en minúsculas
+              de idiomaNavegador. (ej: "es" de "es-ES").*/
+
+              var idiomaNavegador = navigator.language;
+        
+              var idiomaReducido=idiomaNavegador.substring(0,2);
+              
+              document.write(`-Idioma del Navegador: ${idiomaReducido}`);
+              document.write("<br>");
+
+              /*protocoloSeguro: Si esConexionSegura es true asigna "https:", 
+              de lo contrario "http:".*/
+
+              var esConexionSegura = false;
+              var protocolo = window.location.protocol;
+              var protocoloSeguro;
+
+              if(protocolo=="https:"){
+                esConexionSegura=true;
+              }else{
+                esConexionSegura=false;
+              }
+
+              if(esConexionSegura){
+                protocoloSeguro="https:"
+              }else {
+                protocoloSeguro="http:"
+              }
+
+              document.write(`-El protocolo usado es: ${protocoloSeguro}`);
+        </script>
+    </body>
+</html>

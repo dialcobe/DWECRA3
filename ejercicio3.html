@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="es" />
+    <title>Ejercicio3</title>
+  </head>
+  <body>
+    <script>
+      /*3. Crea una web, que la primera que un usuario entra le 
+            pregunta que idioma quiere, ingles (EN) O español (ES).
+            a) La web mostrará un texto en el idioma seleccionado.
+            b) Si el usuario ya accedió anteriormente a la web, 
+            no le pregunta nada y muestra la web en el idioma 
+            seleccionado previamente.
+            c) En el campo de entrada sólo se puede introducir EN o ES,
+            informando del error en caso contrario, y volviendo a 
+            solicitar el valor.*/
+
+      let mensaje = localStorage.getItem("idioma");
+
+      if (mensaje != null) {
+        if (mensaje == "EN") {
+          document.write("Welcome. You have entered my page!!");
+        } else {
+          document.write("Bienvenido. Acabas de entrar a mi página!!");
+        }
+      } else {
+        mensaje = prompt(
+          "Elija un idioma: inglés (EN) o español (ES)"
+        ).toUpperCase();
+        if (mensaje != "EN" && mensaje != "ES") {
+          window.alert("Elija un idioma válido. Intente de nuevo.");
+          
+        } else if (mensaje == "EN") {
+          document.write("Welcome. You have entered my page!!");
+          localStorage.setItem("idioma", mensaje);
+        } else {
+          document.write("Bienvenido. Acabas de entrar a mi página!!");
+          localStorage.setItem("idioma", mensaje);
+        }
+        
+      }
+    </script>
+  </body>
+</html>

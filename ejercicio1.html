@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+    <html lang="es">
+        <head>
+            <meta charset="UTF-8">
+            <title>Ejercicio1</title>
+        </head>
+        <body>
+            <script>
+                /*1.  Crea una página web, con la siguiente funcionalidad. 
+                 Abre una ventana de tamaño 600 X 400, en la ventana 
+                 se escribirá la frase "Hoy es dia/mes/año y faltan 
+                 XX días para fin de año", siendo día, mes, y año , 
+                 los actuales obtenidos a partir del objeto Date*/
+
+                let tamanioVentana = window.open("","","inner=400, width=600");
+                
+                let fechaActual = new Date();
+                const finAnio = new Date(2026,11,31);
+                let fechaVentana = `Hoy es ${fechaActual.toLocaleDateString()}
+                                y faltan ${Math.round((finAnio-fechaActual)/(1000 * 60 * 60 * 24))} días para fin de año.`;
+                tamanioVentana.document.write (fechaVentana); 
+
+            </script>
+        </body>
+    </html>

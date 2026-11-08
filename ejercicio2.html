@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio2</title>
+  </head>
+  <body>
+    <script>
+      /*Vamos utilizar nuestros conocimientos de manipulación de cadenas
+             en javascript, para crear un algoritmo de compresión de cadenas. 
+             El algoritmo consiste en sustituir rachas de caracteres repetidos 
+             por el número de repeticiones seguido del carácter. 
+             El algoritmo sólo actúa con cadenas de caracteres del alfabeto, 
+             por lo que arrojará un mensaje de error en caso de que la cadena 
+             contenga números. Si admite espacios, en cuyo caso se sustituirá 
+             el espacio por una interrogación "?".*/
+
+      // a). Crea una función de compresión que recibe la cadena y devuelve la cadena comprimida.
+      function compresion(cadena) {
+        let contador = 1;
+        let palabraComprimida = "";
+
+        //reemplazar directamente los espacios por el signo de interrogación
+        cadena = cadena.replaceAll(" ", "?");
+
+        //recorrer letra por letra la cadena
+        for (let i = 0; i < cadena.length; i++) {
+          //validar si no hay números en la cadena
+          if (!isNaN(cadena.charAt(i))) {
+            return "Error. Escriba una cadena válida";
+          } else {
+            //comprobar si se repiten letras de la cadena
+            if (cadena.charAt(i) == cadena.charAt(i + 1)) {
+              contador++;
+            } else {
+              //si la cadena lleva solo una letra, no se comprime
+              if (contador == 1) {
+                palabraComprimida = palabraComprimida + cadena.charAt(i);
+              } else {
+                palabraComprimida =
+                  palabraComprimida + contador + cadena.charAt(i);
+                contador = 1;
+              }
+            }
+          }
+        }
+        return palabraComprimida;
+      }
+
+      document.write(compresion("holaaaa mundo"));
+      document.write("<br>");
+
+      //b). Crea una función de descompresión que recibe una cadena en formato comprimido y devuelve la cadena original.
+
+      function descompresion(texto) {
+        let textoDescomprimido = "";
+
+        //recorrer letra por letra buscando números
+        for (let i = 0; i < texto.length; i++) {
+          if (!isNaN(texto.charAt(i))) {
+            let numero = texto.charAt(i);
+            for (let j = 0; j < numero; j++) {
+              textoDescomprimido = textoDescomprimido + texto.charAt(i + 1);
+            }
+            i++;
+          } else {
+            textoDescomprimido = textoDescomprimido + texto.charAt(i);
+          }
+        }
+        //reemplazar los signos de interrogación por espacios
+        textoDescomprimido = textoDescomprimido.replaceAll("?", " ");
+        return textoDescomprimido;
+      }
+      document.write(descompresion("hol4a?mundo"));
+    </script>
+  </body>
+</html>
